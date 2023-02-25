@@ -49,7 +49,7 @@ const fetchProductsData = async () => {
   return products;
 };
 
-export const revalidate = 30
+export const revalidate = 60
 
 export async function generateStaticParams() {
   const query = groq`*[_type == 'product']

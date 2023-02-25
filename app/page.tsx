@@ -24,6 +24,8 @@ const productFetching = async () => {
   return products;
 };
 
+export const revalidate = 60
+
 export default async function Home() {
   const productsData = await productFetching();
   return (
