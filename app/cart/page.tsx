@@ -1,16 +1,14 @@
-'use client'
-import React from 'react'
+"use client";
+import React from "react";
 
-import CheckoutProduct2 from '../components/CheckoutProduct2'
+import CheckoutProduct2 from "../components/CheckoutProduct2";
 
 const Cart = () => {
-    
-
   return (
     <div>
-        <CheckoutProduct2/>
+      <CheckoutProduct2 />
     </div>
-  )
-}
+  );
+};
 
-export default Cart
+export default Cart;
