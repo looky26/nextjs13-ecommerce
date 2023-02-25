@@ -2,9 +2,7 @@ import Button from "@/app/components/Button";
 import OtherProductComponent from "@/app/components/OtherProductComponent";
 import ProductDetailComponent from "@/app/components/ProductDetailComponent";
 import { sanityClient } from "@/utils/client";
-
-
-
+import { groq } from "next-sanity";
 
 type PageProps = {
   params: {
@@ -32,7 +30,7 @@ const fetchProductDetailData = async (slug: string) => {
   return productSlug;
 };
 
-const fetchProductsData = async ()=> {
+const fetchProductsData = async () => {
   const queryProducts = `*[_type == 'product'] {
     _id,
     item,
@@ -47,25 +45,40 @@ const fetchProductsData = async ()=> {
       
   }`;
 
-  const products = await sanityClient.fetch(queryProducts)
-  return products
+  const products = await sanityClient.fetch(queryProducts);
+  return products;
+};
+
+export const revalidate = 30
+
+export async function generateStaticParams() {
+  const query = groq`*[_type == 'product']
+  {
+    slug
+  }
+  `;
+  const slugs = await sanityClient.fetch(query);
+  const slugRoutes = slugs.map((slug: any) => slug.slug.current);
+  return slugRoutes.map((slug: any) => ({
+    slug: slug,
+  }));
 }
 
 const ProducDetail = async ({ params: { slug } }: PageProps) => {
   const productSlug = await fetchProductDetailData(slug);
-  const products = await fetchProductsData()
+  const products = await fetchProductsData();
 
-  console.log(productSlug.productImage)
+  console.log(productSlug.productImage);
   //console.log(productSlug);
   return (
     <div>
       <ProductDetailComponent productSlug={productSlug} />
 
-{/* Moving Other products */}
+      {/* Moving Other products */}
       <div className="max-w-7xl mx-auto mt-20">
         <h1 className="text-center text-3xl font-bold">You may also like</h1>
         <div>
-        <OtherProductComponent products={products}/>
+          <OtherProductComponent products={products} />
         </div>
       </div>
       {/* COMMENTS HERE */}
