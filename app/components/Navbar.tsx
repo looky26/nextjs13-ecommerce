@@ -31,7 +31,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="flex justify-between max-w-7xl mx-auto py-2 mt-5">
+      <nav className="flex justify-between max-w-7xl mx-auto py-2 mt-2">
         <div className="flex items-center space-x-5">
           <Link href={'/'}>
           <h1 className="text-4xl">AVSHOP LOGO</h1>
