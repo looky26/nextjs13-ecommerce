@@ -1,5 +1,6 @@
-"use client";
+
 import React from "react";
+
 
 import CheckoutProduct2 from "../components/CheckoutProduct2";
 

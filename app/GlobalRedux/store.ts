@@ -3,18 +3,26 @@
 import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "./Features/counterSlice";
 import cartReducer from "./Features/cartSlice";
+import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-const savedCart = localStorage.getItem('cart');
-const preloadedState = savedCart ? { cart: { items: JSON.parse(savedCart) } } : {};
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+
+const persistedCartReducer = persistReducer(persistConfig, cartReducer);
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
 
-    cart: cartReducer,
+    cart: persistedCartReducer,
   },
-  preloadedState,
+  
 });
+
+export const persistor = persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
