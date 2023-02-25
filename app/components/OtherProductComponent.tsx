@@ -1,4 +1,4 @@
-
+'use client'
 
 import { urlFor } from "@/utils/client";
 import Link from "next/link";
