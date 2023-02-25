@@ -35,7 +35,7 @@ export default async function Home() {
 
   const productsData = await productFetching();
   return (
-    <main className="flex max-w-7xl mx-auto">
+    <main className="flex max-w-7xl mx-auto ">
     
       <Sidebar />
       <Products productsData={productsData} />
