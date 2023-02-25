@@ -2,6 +2,7 @@ import Navbar from "./components/Navbar";
 import "./globals.css";
 import { Providers } from "./GlobalRedux/provider";
 
+
 export default function RootLayout({
   children,
 }: {
@@ -15,10 +16,12 @@ export default function RootLayout({
       */}
       <head />
       <body>
-        <Providers>
-          <Navbar />
-          {children}
-        </Providers>
+      
+          <Providers>
+            <Navbar />
+            {children}
+          </Providers>
+       
       </body>
     </html>
   );
