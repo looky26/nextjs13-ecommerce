@@ -55,7 +55,8 @@ const ProducDetail = async ({ params: { slug } }: PageProps) => {
   const productSlug = await fetchProductDetailData(slug);
   const products = await fetchProductsData()
 
-  console.log(productSlug);
+  console.log(productSlug.productImage)
+  //console.log(productSlug);
   return (
     <div>
       <ProductDetailComponent productSlug={productSlug} />

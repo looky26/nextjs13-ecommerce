@@ -29,7 +29,7 @@ const CheckoutProduct = () => {
   const items = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch();
 
-  console.log(items);
+  //console.log(items);
 
   const quantity = items.map((item: BasketItem) => item.quantity);
   const sumQuantity = quantity.reduce(

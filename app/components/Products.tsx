@@ -3,7 +3,7 @@
 import Product from "./Product";
 
 const Products = ({ productsData }: any) => {
-  console.log(productsData)
+  //console.log(productsData)
   return (
     <div className="flex items-center flex-col space-y-5 py-5 pl-5">
       {productsData.map((product: any) => (

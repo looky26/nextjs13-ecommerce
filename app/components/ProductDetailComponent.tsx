@@ -17,13 +17,13 @@ const ProductDetailComponent = ({ productSlug }: any) => {
     setQuantity((prev) => prev - 1);
   };
 
-  console.log(productSlug.productImage)
+  
 
   return (
     <div>
       <div className="flex  max-w-7xl mx-auto bg-zinc-900">
         {/* left */}
-        <img src={urlFor(productSlug?.productImage)?.url()} alt="" className="w-96 h-96" />
+        <img src={urlFor(productSlug.productImage)!.url()} alt="" className="w-96 h-96" />
         
 
         {/* right */}
