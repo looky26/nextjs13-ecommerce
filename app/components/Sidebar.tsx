@@ -1,25 +1,31 @@
 "use client";
 import { sanityClient } from "@/utils/client";
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setCategoryItem, setCategoryName } from "../GlobalRedux/Features//categorySlice";
+import {
+  setCategoryItem,
+  toggleCategory,
+} from "../GlobalRedux/Features//categorySlice";
 import { RootState } from "../GlobalRedux/store";
 
 const Sidebar = () => {
   const [products, setProducts] = useState([]);
+
   const dispatch = useDispatch();
   const category = useSelector(
-    (state: RootState) => state.category.categoryName
+    (state: RootState) => state.category.selectedCategories
   );
 
   const categoryItem = useSelector(
     (state: RootState) => state.category.categoryItem
   );
 
+  //const items = ['Electronics', "Laptop"]
 
-
-useEffect(() => {
-  const query = `*[_type == "product" && references(*[_type == "category" && title == "${category}"]._id)] {
+  useEffect(() => {
+    const query = `*[_type == "product" && references(*[_type == "category" && title in [${category
+      .map((item) => `"${item}"`)
+      .join(", ")}]]._id)] {
     item,
     description,
     price,
@@ -27,54 +33,45 @@ useEffect(() => {
     freeShipping,
     slug,
     "imageUrl": productImage.asset->url,
-    categories[]->{
+    "categories": categories[]->{
       title
     },
     publishedAt
   }`;
 
-  sanityClient
-    .fetch(query)
-    .then((data) => {
-      //console.log(data)
-      data.map((cat:any)=> {
-        if(!cat) {
-          return
-        }
-        dispatch(setCategoryItem({item:cat.item, price:cat.price, description:cat.description, productImage:cat.imageUrl, ratings:cat.ratings , slug:cat.slug}))
+    sanityClient
+      .fetch(query)
+      .then((data) => {
+        //console.log(data)
+        data.map((cat: any) => {
+          dispatch(
+            setCategoryItem({
+              item: cat.item,
+              price: cat.price,
+              description: cat.description,
+              productImage: cat.imageUrl,
+              ratings: cat.ratings,
+              slug: cat.slug,
+            })
+          );
+        });
+        //setProducts(cats)
       })
-      //setProducts(cats)
-      
-     
-    })
-    .catch((error) => console.error(error));
-}, [category])
+      .catch((error) => console.error(error));
+  }, [category]);
 
+  console.log(products);
 
+  console.log(category);
 
-console.log(categoryItem)
+  const handleInputChange = (event: any) => {
+    const { name, value } = event.target;
+    const isChecked = event.target.checked;
 
-//console.log(category)
-  
-const handleInputChange = (event: any) => {
-  const { value } = event.target;
-  const isChecked = event.target.checked;
-  console.log(isChecked)
+    dispatch(toggleCategory(value));
+    // dispatch(setCategoryItem(products[0]))
+  };
 
-  if(isChecked) {
-    dispatch(setCategoryName(value));
-  } else {
-    dispatch(setCategoryName([]));
-    // dispatch(setCategoryName(categoryItem.filter(v => v !== value)));
-    // dispatch(setCategoryItem(categoryItem.filter(v => v !== value)))
-  }
-  
-  // dispatch(setCategoryItem(products[0]))
-};
-
-//console.log(products)
-
-//console.log(categoryItem)
   return (
     <aside className="flex-none w-80 mt-5">
       <div className="p-5 border border-solid border-gray-500 rounded-md">
