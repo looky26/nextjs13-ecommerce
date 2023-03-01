@@ -19,7 +19,7 @@ interface BasketItem {
 const Navbar = () => {
   
   const items  = useSelector((state: RootState) => state.cart.items);
-  console.log(items)
+  //console.log(items)
 
   const quantity = items.map((item:BasketItem)=> (
     item.quantity

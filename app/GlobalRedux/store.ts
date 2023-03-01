@@ -3,6 +3,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "./Features/counterSlice";
 import cartReducer from "./Features/cartSlice";
+import categoryReducer from './Features/categorySlice';
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
@@ -18,6 +19,7 @@ export const store = configureStore({
     counter: counterReducer,
 
     cart: persistedCartReducer,
+    category: categoryReducer,
   },
   
 });

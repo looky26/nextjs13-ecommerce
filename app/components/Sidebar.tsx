@@ -1,10 +1,80 @@
-'use client'
-import React from "react";
+"use client";
+import { sanityClient } from "@/utils/client";
+import React, { useState,useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setCategoryItem, setCategoryName } from "../GlobalRedux/Features//categorySlice";
+import { RootState } from "../GlobalRedux/store";
 
 const Sidebar = () => {
+  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+  const category = useSelector(
+    (state: RootState) => state.category.categoryName
+  );
 
-    const star = 5
+  const categoryItem = useSelector(
+    (state: RootState) => state.category.categoryItem
+  );
 
+
+
+useEffect(() => {
+  const query = `*[_type == "product" && references(*[_type == "category" && title == "${category}"]._id)] {
+    item,
+    description,
+    price,
+    ratings,
+    freeShipping,
+    slug,
+    "imageUrl": productImage.asset->url,
+    categories[]->{
+      title
+    },
+    publishedAt
+  }`;
+
+  sanityClient
+    .fetch(query)
+    .then((data) => {
+      //console.log(data)
+      data.map((cat:any)=> {
+        if(!cat) {
+          return
+        }
+        dispatch(setCategoryItem({item:cat.item, price:cat.price, description:cat.description, productImage:cat.imageUrl, ratings:cat.ratings , slug:cat.slug}))
+      })
+      //setProducts(cats)
+      
+     
+    })
+    .catch((error) => console.error(error));
+}, [category])
+
+
+
+console.log(categoryItem)
+
+//console.log(category)
+  
+const handleInputChange = (event: any) => {
+  const { value } = event.target;
+  const isChecked = event.target.checked;
+  console.log(isChecked)
+
+  if(isChecked) {
+    dispatch(setCategoryName(value));
+  } else {
+    dispatch(setCategoryName([]));
+    // dispatch(setCategoryName(categoryItem.filter(v => v !== value)));
+    // dispatch(setCategoryItem(categoryItem.filter(v => v !== value)))
+  }
+  
+  // dispatch(setCategoryItem(products[0]))
+};
+
+//console.log(products)
+
+//console.log(categoryItem)
   return (
     <aside className="flex-none w-80 mt-5">
       <div className="p-5 border border-solid border-gray-500 rounded-md">
@@ -27,23 +97,58 @@ const Sidebar = () => {
         <h1>Category</h1>
         <div className="">
           <div className="flex items-center space-x-2 mt-2">
-            <input className="w-5 h-5" type="checkbox" placeholder="Min" />
+            <input
+              className="w-5 h-5"
+              type="checkbox"
+              placeholder="Min"
+              name="categoryName"
+              value={"Electronics"}
+              onChange={handleInputChange}
+            />
             <p className="inline-block">Electronics</p>
           </div>
           <div className="flex items-center space-x-2 mt-2">
-            <input className="w-5 h-5" type="checkbox" placeholder="Min" />
+            <input
+              className="w-5 h-5"
+              type="checkbox"
+              placeholder="Min"
+              name="categoryName"
+              value={"Laptop"}
+              onChange={handleInputChange}
+            />
             <p className="inline-block">Laptops</p>
           </div>
           <div className="flex items-center space-x-2 mt-2">
-            <input className="w-5 h-5" type="checkbox" placeholder="Min" />
+            <input
+              className="w-5 h-5"
+              type="checkbox"
+              placeholder="Min"
+              name="categoryName"
+              value={"Toys"}
+              onChange={handleInputChange}
+            />
             <p className="inline-block">Toys</p>
           </div>
           <div className="flex items-center space-x-2 mt-2">
-            <input className="w-5 h-5" type="checkbox" placeholder="Min" />
+            <input
+              className="w-5 h-5"
+              type="checkbox"
+              placeholder="Min"
+              name="categoryName"
+              value={"Office"}
+              onChange={handleInputChange}
+            />
             <p className="inline-block">Office</p>
           </div>
           <div className="flex items-center space-x-2 mt-2">
-            <input className="w-5 h-5" type="checkbox" placeholder="Min" />
+            <input
+              className="w-5 h-5"
+              type="checkbox"
+              placeholder="Min"
+              name="categoryName"
+              value={"Beauty"}
+              onChange={handleInputChange}
+            />
             <p className="inline-block">Beauty</p>
           </div>
         </div>

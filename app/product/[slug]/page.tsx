@@ -25,7 +25,7 @@ const fetchProductDetailData = async (slug: string) => {
 
   const productSlug = await sanityClient.fetch(querySlug, {
     slug: slug,
-    // cache: "force-cache",
+    cache: "force-cache",
   });
   return productSlug;
 };
@@ -68,7 +68,7 @@ const ProducDetail = async ({ params: { slug } }: PageProps) => {
   const productSlug = await fetchProductDetailData(slug);
   const products = await fetchProductsData();
 
-  console.log(productSlug.productImage);
+  //console.log(productSlug.productImage);
   //console.log(productSlug);
   return (
     <div>
