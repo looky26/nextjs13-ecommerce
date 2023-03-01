@@ -9,7 +9,9 @@ const categorySlice = createSlice({
     },
     setCategoryItem(state, action) {
       state.categoryItem.push(action.payload);
+      localStorage.setItem('cart', JSON.stringify(state.items));
     },
+    
 
     // ... other reducers
   },
