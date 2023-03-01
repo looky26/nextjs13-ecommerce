@@ -16,7 +16,8 @@ const Products = ({ productsData }: any) => {
     (state: RootState) => state.category.categoryItem
   );
   
-
+  
+  
   //console.log(productsData)
   return (
     <div className="flex items-center flex-col space-y-5 py-5 pl-5">

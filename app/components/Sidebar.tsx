@@ -39,38 +39,29 @@ const Sidebar = () => {
     publishedAt
   }`;
 
+    console.log("category:", category);
+
     sanityClient
       .fetch(query)
-      .then((data) => {
-        //console.log(data)
-        data.map((cat: any) => {
-          dispatch(
-            setCategoryItem({
-              item: cat.item,
-              price: cat.price,
-              description: cat.description,
-              productImage: cat.imageUrl,
-              ratings: cat.ratings,
-              slug: cat.slug,
-            })
-          );
-        });
-        //setProducts(cats)
-      })
+      .then((data) => dispatch(setCategoryItem(data)))
+
       .catch((error) => console.error(error));
   }, [category]);
 
-  console.log(products);
+  //console.log(products);
 
-  console.log(category);
+  //console.log(category);
 
   const handleInputChange = (event: any) => {
     const { name, value } = event.target;
     const isChecked = event.target.checked;
-
+    console.log("value:", value);
     dispatch(toggleCategory(value));
     // dispatch(setCategoryItem(products[0]))
   };
+
+  //console.log(categoryItem.length)
+  //console.log(category)
 
   return (
     <aside className="flex-none w-80 mt-5">
