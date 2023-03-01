@@ -13,13 +13,14 @@ const persistConfig = {
 };
 
 const persistedCartReducer = persistReducer(persistConfig, cartReducer);
+const persistedCategoryReducer = persistReducer(persistConfig, categoryReducer);
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
 
     cart: persistedCartReducer,
-    category: categoryReducer,
+    category: persistedCategoryReducer,
   },
   
 });
