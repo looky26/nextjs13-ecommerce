@@ -8,8 +8,8 @@ const categorySlice = createSlice({
     toggleCategory(state, action) {
       console.log('state:', state.selectedCategories )
       const index = state.selectedCategories.indexOf(action.payload);
-      console.log('index:', index)
-      console.log(action.payload)
+      //console.log('index:', index)
+      //console.log(action.payload)
       if (index === -1) {
         
         state.selectedCategories.push(action.payload);
@@ -20,6 +20,7 @@ const categorySlice = createSlice({
     setCategoryItem(state, action) {
       console.log('catItem:', action.payload)
       state.categoryItem = action.payload.map(cat=> ({
+        id:cat._id,
         item: cat.item,
         price: cat.price,
         description: cat.description,
@@ -29,16 +30,17 @@ const categorySlice = createSlice({
       }));
     },
     removeCategory(state, action) {
-      const index = state.selectedCategories.indexOf(action.payload);
-      if (index !== -1) {
-        state.selectedCategories.splice(index, 1);
-      }
+      console.log('removeCat:', action.payload)
+      state.categoryItem = action.payload
+      state.selectedCategories = action.payload;
+      
+      console.log('selectedCategory:', state.selectedCategories)
     }
 
     // ... other reducers
   },
 });
 
-export const { toggleCategory, setCategoryItem } = categorySlice.actions;
+export const { toggleCategory, setCategoryItem, removeCategory } = categorySlice.actions;
 
 export default categorySlice.reducer;

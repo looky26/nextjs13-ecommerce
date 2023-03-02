@@ -6,6 +6,7 @@ import { RootState } from "../GlobalRedux/store";
 import Link from "next/link";
 import { addItem } from "../GlobalRedux/Features/cartSlice";
 import { urlFor, sanityClient } from "@/utils/client";
+import { removeCategory } from "../GlobalRedux/Features/categorySlice";
 
 interface ProductProps {
   id: string;
@@ -37,12 +38,13 @@ const Product: React.FC<ProductProps> = ({
 
 
 
+
  
 
   return (
     <div className="border border-gray-400 border-solid p-2 rounded-md">
-      <div className="flex items-center">
-        <Link className="flex items-center " href={`/product/${slug.current}`}>
+      <div className="flex items-center" >
+        <Link className="flex items-center " href={`/product/${slug.current}`} >
           <img
             className="w-60 h-60 object-contain"
             src={urlFor(productImage).url()}

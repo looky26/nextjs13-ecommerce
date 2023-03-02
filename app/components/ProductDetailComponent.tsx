@@ -1,12 +1,17 @@
 "use client";
 
-
+import React, { useState, useEffect } from "react";
 import { urlFor } from "@/utils/client";
-import React, { useState } from "react";
+
 import PortableText from "react-portable-text";
 import Button from "./Button";
+import { removeCategory } from "../GlobalRedux/Features/categorySlice";
+import { useDispatch } from "react-redux";
 
 const ProductDetailComponent = ({ productSlug }: any) => {
+
+  const dispatch = useDispatch();
+
   const [quantity, setQuantity] = useState(1);
   const isDisabled = quantity === 0;
 
@@ -18,6 +23,14 @@ const ProductDetailComponent = ({ productSlug }: any) => {
   };
 
   
+  const handleEmptyCategory = () => {
+    dispatch(removeCategory([]))
+  }
+  
+  useEffect(() => {
+    handleEmptyCategory()
+  }, [])
+
 
   return (
     <div>

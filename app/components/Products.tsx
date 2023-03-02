@@ -16,7 +16,7 @@ const Products = ({ productsData }: any) => {
     (state: RootState) => state.category.categoryItem
   );
   
-  
+  console.log('catItemonselect',categoryItem)
   
   //console.log(productsData)
   return (
@@ -45,8 +45,8 @@ const Products = ({ productsData }: any) => {
         {categoryItem.map((product: any) => (
           <>
             <Product
-              key={product._id}
-              id={product._id}
+              key={product.id}
+              id={product.id}
               ratings={product.ratings}
               item={product.item}
               slug={product.slug}

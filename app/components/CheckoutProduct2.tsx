@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBasketTotal } from "../GlobalRedux/Features/cartSlice";
 import { RootState } from "../GlobalRedux/store";
@@ -13,6 +13,7 @@ import {
 } from "../GlobalRedux/Features//cartSlice";
 import Link from "next/link";
 import { urlFor } from "@/utils/client";
+import { removeCategory } from "../GlobalRedux/Features/categorySlice";
 
 interface BasketItem {
   id: string;
@@ -46,6 +47,14 @@ const CheckoutProduct = () => {
   };
 
   //console.log(sumPrice*sumQuantity)
+  const handleEmptyCategory = () => {
+    dispatch(removeCategory([]))
+  }
+  
+  useEffect(() => {
+    handleEmptyCategory()
+  }, [])
+
 
   return (
     <div

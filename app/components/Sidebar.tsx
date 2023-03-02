@@ -3,13 +3,14 @@ import { sanityClient } from "@/utils/client";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  removeCategory,
   setCategoryItem,
   toggleCategory,
 } from "../GlobalRedux/Features//categorySlice";
 import { RootState } from "../GlobalRedux/store";
 
 const Sidebar = () => {
-  const [products, setProducts] = useState([]);
+  
 
   const dispatch = useDispatch();
   const category = useSelector(
@@ -26,6 +27,7 @@ const Sidebar = () => {
     const query = `*[_type == "product" && references(*[_type == "category" && title in [${category
       .map((item) => `"${item}"`)
       .join(", ")}]]._id)] {
+    _id,
     item,
     description,
     price,
@@ -46,6 +48,8 @@ const Sidebar = () => {
       .then((data) => dispatch(setCategoryItem(data)))
 
       .catch((error) => console.error(error));
+
+    
   }, [category]);
 
   //console.log(products);
@@ -54,7 +58,6 @@ const Sidebar = () => {
 
   const handleInputChange = (event: any) => {
     const { name, value } = event.target;
-    const isChecked = event.target.checked;
     console.log("value:", value);
     dispatch(toggleCategory(value));
     // dispatch(setCategoryItem(products[0]))
