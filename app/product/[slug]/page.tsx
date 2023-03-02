@@ -82,7 +82,7 @@ const ProducDetail = async ({ params: { slug } }: PageProps) => {
 
       {/* Moving Other products */}
       <div className="max-w-7xl mx-auto mt-20">
-        <h1 className="text-center text-3xl font-bold">You may also like</h1>
+        <h1 className="text-center text-3xl font-bold mb-10">You may also like</h1>
         <div>
           <OtherProductComponent products={products} />
         </div>
