@@ -93,10 +93,10 @@ const Sidebar = () => {
               type="checkbox"
               placeholder="Min"
               name="categoryName"
-              value={"Electronics"}
+              value={"Monitors"}
               onChange={handleInputChange}
             />
-            <p className="inline-block">Electronics</p>
+            <p className="inline-block">Monitors</p>
           </div>
           <div className="flex items-center space-x-2 mt-2">
             <input

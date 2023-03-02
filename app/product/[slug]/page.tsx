@@ -20,6 +20,9 @@ const fetchProductDetailData = async (slug: string) => {
     slug,
     freeShipping,
     productImage,
+    "categories": categories[]->{
+      title
+    },
       
   }`;
 
@@ -39,6 +42,9 @@ const fetchProductsData = async () => {
     ratings,
     slug {
       current
+    },
+    "categories": categories[]->{
+      title
     },
     freeShipping,
     productImage,
@@ -68,8 +74,8 @@ const ProducDetail = async ({ params: { slug } }: PageProps) => {
   const productSlug = await fetchProductDetailData(slug);
   const products = await fetchProductsData();
 
-  //console.log(productSlug.productImage);
-  //console.log(productSlug);
+  console.log(productSlug.productImage);
+  console.log('productSlugItems:', productSlug);
   return (
     <div>
       <ProductDetailComponent productSlug={productSlug} />
