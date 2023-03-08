@@ -6,7 +6,7 @@ import React from "react";
 
 const OtherProductComponent = ({ products }: any) => {
 
-  console.log('productSlugItems:', products);
+  //console.log('productSlugItems:', products);
 
   const randomItems: any = [];
 

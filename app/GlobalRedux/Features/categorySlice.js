@@ -6,7 +6,7 @@ const categorySlice = createSlice({
   reducers: {
     
     toggleCategory(state, action) {
-      console.log('state:', state.selectedCategories )
+      //console.log('state:', state.selectedCategories )
       const index = state.selectedCategories.indexOf(action.payload);
       //console.log('index:', index)
       //console.log(action.payload)
@@ -18,7 +18,7 @@ const categorySlice = createSlice({
       }
     },
     setCategoryItem(state, action) {
-      console.log('catItem:', action.payload)
+      //console.log('catItem:', action.payload)
       state.categoryItem = action.payload.map(cat=> ({
         id:cat._id,
         item: cat.item,
@@ -30,7 +30,7 @@ const categorySlice = createSlice({
       }));
     },
     removeCategory(state, action) {
-      console.log('removeCat:', action.payload)
+      //console.log('removeCat:', action.payload)
       state.categoryItem = action.payload
       state.selectedCategories = action.payload;
       

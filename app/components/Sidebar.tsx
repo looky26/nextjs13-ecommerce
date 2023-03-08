@@ -41,7 +41,7 @@ const Sidebar = () => {
     publishedAt
   }`;
 
-    console.log("category:", category);
+    //console.log("category:", category);
 
     sanityClient
       .fetch(query)
@@ -104,7 +104,7 @@ const Sidebar = () => {
               type="checkbox"
               placeholder="Min"
               name="categoryName"
-              value={"Laptop"}
+              value={"Laptops"}
               onChange={handleInputChange}
             />
             <p className="inline-block">Laptops</p>

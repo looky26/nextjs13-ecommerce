@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 
 const ProductDetailComponent = ({ productSlug }: any) => {
 
-  console.log('productslug:', productSlug.relatedProducts);
+  //console.log('productslug:', productSlug.relatedProducts);
 
   const dispatch = useDispatch();
 

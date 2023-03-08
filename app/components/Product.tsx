@@ -1,6 +1,5 @@
 "use client";
 
-
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../GlobalRedux/store";
 import Link from "next/link";
@@ -36,15 +35,10 @@ const Product: React.FC<ProductProps> = ({
 
   //console.log(items);
 
-
-
-
- 
-
   return (
     <div className="border border-gray-400 border-solid p-2 rounded-md">
-      <div className="flex items-center" >
-        <Link className="flex items-center " href={`/product/${slug.current}`} >
+      <div className="flex items-center">
+        <Link className="flex items-center " href={`/product/${slug.current}`}>
           <img
             className="w-60 h-60 object-contain"
             src={urlFor(productImage).url()}
@@ -55,8 +49,9 @@ const Product: React.FC<ProductProps> = ({
             <div className="flex">
               {Array(ratings)
                 .fill(0)
-                .map((_) => (
+                .map((_, index) => (
                   <svg
+                    key={index}
                     xmlns="http://www.w3.org/2000/svg"
                     fill="gold"
                     viewBox="0 0 24 24"
