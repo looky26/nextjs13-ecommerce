@@ -26,7 +26,7 @@ const fetchSlugItemDatas = async (categorySlug: any) => {
     freeShipping,
     productImage,
   }[0...50]`;
-  const params = { categorySlug: categorySlug };
+  const params = { categorySlug: categorySlug, cache: "force-cache" };
   const results = await sanityClient.fetch(query, params);
   return results;
 };
