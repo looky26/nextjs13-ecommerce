@@ -31,6 +31,8 @@ const fetchSlugItemDatas = async (categorySlug: any) => {
   return results;
 };
 
+export const revalidate = 60
+
 export async function generateStaticParams() {
   const query = groq`*[_type == 'category']
   {
