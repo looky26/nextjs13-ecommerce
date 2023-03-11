@@ -24,7 +24,7 @@ const categorySlice = createSlice({
         item: cat.item,
         price: cat.price,
         description: cat.description,
-        productImage: cat.imageUrl,
+        productImage: cat.productImage,
         ratings: cat.ratings,
         slug: cat.slug,
       }));
@@ -34,7 +34,7 @@ const categorySlice = createSlice({
       state.categoryItem = action.payload
       state.selectedCategories = action.payload;
       
-      console.log('selectedCategory:', state.selectedCategories)
+      //console.log('selectedCategory:', state.selectedCategories)
     }
 
     // ... other reducers

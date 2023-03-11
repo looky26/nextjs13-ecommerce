@@ -9,9 +9,7 @@ import {
 } from "../GlobalRedux/Features/categorySlice";
 import { RootState } from "../GlobalRedux/store";
 
-const Sidebar = () => {
-  
-
+const Sidebar = ({ brands, slug }: any) => {
   const dispatch = useDispatch();
   const category = useSelector(
     (state: RootState) => state.category.selectedCategories
@@ -21,25 +19,31 @@ const Sidebar = () => {
     (state: RootState) => state.category.categoryItem
   );
 
-  //const items = ['Electronics', "Laptop"]
+  //const items = ['Electronics', "Laptop"]'
+  //console.log("sidebar:", slug)
+  //console.log('selectedBrand:', category)
+  console.log("brandItems:", categoryItem);
 
   useEffect(() => {
-    const query = `*[_type == "product" && references(*[_type == "category" && title in [${category
+    const query = `*[_type == 'product' && brand in [${category
       .map((item) => `"${item}"`)
-      .join(", ")}]]._id)] {
-    _id,
-    item,
-    description,
-    price,
-    ratings,
-    freeShipping,
-    slug,
-    "imageUrl": productImage.asset->url,
-    "categories": categories[]->{
-      title
-    },
-    publishedAt
-  }`;
+      .join(", ")}] && '${slug}' in categories[]->.slug.current] {
+        _id,
+        item,
+        description,
+        brand,
+        price,
+        ratings,
+        slug {
+          current
+        },
+        "categories": categories[]->{
+          title,
+          slug
+        },
+        freeShipping,
+        productImage,
+      }`;
 
     //console.log("category:", category);
 
@@ -48,8 +52,6 @@ const Sidebar = () => {
       .then((data) => dispatch(setCategoryItem(data)))
 
       .catch((error) => console.error(error));
-
-    
   }, [category]);
 
   //console.log(products);
@@ -85,63 +87,21 @@ const Sidebar = () => {
         </div>
       </div>
       <div className="p-5 border border-solid border-gray-500 rounded-md">
-        <h1>Category</h1>
+        <h1>Brand</h1>
         <div className="">
-          <div className="flex items-center space-x-2 mt-2">
-            <input
-              className="w-5 h-5"
-              type="checkbox"
-              placeholder="Min"
-              name="categoryName"
-              value={"Monitors"}
-              onChange={handleInputChange}
-            />
-            <p className="inline-block">Monitors</p>
-          </div>
-          <div className="flex items-center space-x-2 mt-2">
-            <input
-              className="w-5 h-5"
-              type="checkbox"
-              placeholder="Min"
-              name="categoryName"
-              value={"Laptops"}
-              onChange={handleInputChange}
-            />
-            <p className="inline-block">Laptops</p>
-          </div>
-          <div className="flex items-center space-x-2 mt-2">
-            <input
-              className="w-5 h-5"
-              type="checkbox"
-              placeholder="Min"
-              name="categoryName"
-              value={"Toys"}
-              onChange={handleInputChange}
-            />
-            <p className="inline-block">Toys</p>
-          </div>
-          <div className="flex items-center space-x-2 mt-2">
-            <input
-              className="w-5 h-5"
-              type="checkbox"
-              placeholder="Min"
-              name="categoryName"
-              value={"Office"}
-              onChange={handleInputChange}
-            />
-            <p className="inline-block">Office</p>
-          </div>
-          <div className="flex items-center space-x-2 mt-2">
-            <input
-              className="w-5 h-5"
-              type="checkbox"
-              placeholder="Min"
-              name="categoryName"
-              value={"Beauty"}
-              onChange={handleInputChange}
-            />
-            <p className="inline-block">Beauty</p>
-          </div>
+          {brands.map((brand: string) => (
+            <div className="flex items-center space-x-2 mt-2">
+              <input
+                className="w-5 h-5"
+                type="checkbox"
+                placeholder="Min"
+                name="categoryName"
+                value={brand}
+                onChange={handleInputChange}
+              />
+              <p className="inline-block">{brand}</p>
+            </div>
+          ))}
         </div>
       </div>
       <div className="p-5 border border-solid border-gray-500 rounded-md">

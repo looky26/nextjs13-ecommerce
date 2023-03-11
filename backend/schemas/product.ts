@@ -10,6 +10,12 @@ export default defineType({
       title: 'Item',
       type: 'string',
     }),
+
+    defineField({
+      name: 'brand',
+      title: 'Brand',
+      type: 'string',
+    }),
     defineField({
       name: 'description',
       title: 'Description',

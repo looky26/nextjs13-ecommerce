@@ -22,6 +22,7 @@ type ProductProps = {
 
 const Products = ({ productsData }: any) => {
   const [itemsToLoad, setItemsToLoad] = useState(4);
+  console.log("products:",productsData)
   const category = useSelector(
     (state: RootState) => state.category.selectedCategories
   );
@@ -30,7 +31,7 @@ const Products = ({ productsData }: any) => {
     (state: RootState) => state.category.categoryItem
   );
 
-  console.log("catItemonselect", categoryItem);
+  //console.log("catItemonselect", categoryItem);
 
   //console.log(productsData)
   return (

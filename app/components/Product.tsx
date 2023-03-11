@@ -41,10 +41,10 @@ const Product: React.FC<ProductProps> = ({
         <Link className="flex items-center " href={`/product/${slug.current}`}>
           <img
             className="w-60 h-60 object-contain"
-            src={urlFor(productImage).url()}
+            src={urlFor(productImage)?.url()}
             alt="KOORUI Business Computer Monitor Display"
           />
-          <div className="p-10 w-[500px]">
+          <div className="p-10 w-[300px]">
             <h1>{item}</h1>
             <div className="flex">
               {Array(ratings)
