@@ -77,7 +77,7 @@ const ProducDetail = async ({ params: { slug } }: PageProps) => {
   //(productSlug.productImage);
   //console.log('productSlugItems:', productSlug);
   return (
-    <div>
+    <div className="bg-black">
       <ProductDetailComponent productSlug={productSlug} />
 
       {/* Moving Other products */}

@@ -30,9 +30,9 @@ const Navbar = () => {
   
 
   return (
-    <>
-      <nav className="flex justify-between max-w-7xl mx-auto py-2 mt-2">
-        <div className="flex items-center space-x-5">
+    <div className="bg-black">
+      <nav className=" flex justify-between max-w-7xl mx-auto items-center py-2 ">
+        <div className="flex  space-x-5">
           <Link href={'/'}>
           <h1 className="text-4xl">AVSHOP LOGO</h1>
           </Link>
@@ -87,8 +87,9 @@ const Navbar = () => {
           </button>
         </div>
       </nav>
-      <hr className="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700" />
-    </>
+      <hr />
+      {/* <hr className="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700" /> */}
+    </div>
   );
 };
 

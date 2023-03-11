@@ -57,13 +57,14 @@ const CheckoutProduct = () => {
 
 
   return (
+    <div className="bg-black h-full">
     <div
       className={`${
         items.length ? "flex" : "flex justify-center"
-      }  max-w-7xl mx-auto bg-zinc-900`}
+      }  max-w-7xl mx-auto bg-zinc-800`}
     >
       {items.length === 0 ? (
-        <div className="p-5 flex flex-col">
+        <div className="p-5 flex flex-col h-[100vh]">
           <h2>Your Shopping Basket is empty</h2>
           <p>You have no items in your cart.</p>
           <Link href={'/'}>
@@ -73,7 +74,7 @@ const CheckoutProduct = () => {
           </Link>
         </div>
       ) : (
-        <div className=" p-5">
+        <div className=" p-5 h-[100vh]">
           <h2 className="checkout__title">Your shopping Basket</h2>
           {items.map((item: BasketItem) => (
             <div
@@ -159,6 +160,7 @@ const CheckoutProduct = () => {
           </button>
         </div>
       )}
+    </div>
     </div>
   );
 };

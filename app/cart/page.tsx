@@ -6,7 +6,7 @@ import CheckoutProduct2 from "../components/CheckoutProduct2";
 
 const Cart = () => {
   return (
-    <div>
+    <div >
       <CheckoutProduct2 />
     </div>
   );
