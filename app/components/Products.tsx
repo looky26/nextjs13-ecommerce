@@ -35,9 +35,9 @@ const Products = ({ productsData }: any) => {
 
   //console.log(productsData)
   return (
-    <div className="flex items-center flex-col  pl-5">
+    <div className="flex items-center flex-col mt-5  pl-5">
       {!categoryItem.length ? (
-        <div>
+        <div className="space-y-5">
           {productsData.slice(0, itemsToLoad).map((product: ProductProps) => (
             <div key={product._id}>
               <Product
@@ -54,7 +54,7 @@ const Products = ({ productsData }: any) => {
           ))}
         </div>
       ) : (
-        <div>
+        <div className="space-y-5">
           {categoryItem.map((product: ProductProps) => (
             <div key={product.id}>
               <Product
@@ -71,7 +71,7 @@ const Products = ({ productsData }: any) => {
           ))}
         </div>
       )}
-      <button className="bg-amber-700 p-2 px-3 rounded-md" onClick={() => setItemsToLoad((prev) => prev + 5)}>
+      <button className="bg-amber-700 p-2 mt-5 px-3 rounded-md" onClick={() => setItemsToLoad((prev) => prev + 5)}>
         Load more
       </button>
     </div>
