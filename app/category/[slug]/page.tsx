@@ -59,16 +59,12 @@ const Category = async ({ params: { slug } }: PageProps) => {
   console.log(brands);
 
   return (
-    <div className="flex justify-center bg-black px-5 ">
+    <div className="flex justify-center bg-black px-5 h-[100vh]">
       <Sidebar2 brands={brands} slug={slug} />
       <div className="  text-white flex items-center flex-col space-y-5 py-5 pl-5 h-full">
         <h1>Category: {slug.replace(/-/g, " ").toUpperCase()}</h1>
-  
-            <Products productsData={results}
-           
-            />
-        
 
+        <Products productsData={results} />
       </div>
     </div>
   );

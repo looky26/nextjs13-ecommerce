@@ -35,7 +35,7 @@ const Products = ({ productsData }: any) => {
 
   //console.log(productsData)
   return (
-    <div className="flex items-center flex-col space-y-5 py-5 pl-5">
+    <div className="flex items-center flex-col  pl-5">
       {!categoryItem.length ? (
         <div>
           {productsData.slice(0, itemsToLoad).map((product: ProductProps) => (
