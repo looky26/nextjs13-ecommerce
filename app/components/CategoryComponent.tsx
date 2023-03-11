@@ -1,7 +1,10 @@
 "use client";
+import React, { useEffect } from "react";
 import { urlFor } from "@/utils/client";
 import Link from "next/link";
-import React from "react";
+
+import { useDispatch } from "react-redux";
+import { removeCategory } from "../GlobalRedux/Features/categorySlice";
 
 const CategoryComponent = ({ cat }: any) => {
   // console.log("categorycomponent:", categories.map(item=>item.categories[2].title))
@@ -9,6 +12,16 @@ const CategoryComponent = ({ cat }: any) => {
 
   // const bgUrl = urlFor(cat.categoryImage).url();
   // console.log(bgUrl);
+
+  const dispatch = useDispatch();
+
+  const handleEmptyCategory = () => {
+    dispatch(removeCategory([]))
+  }
+  
+  useEffect(() => {
+    handleEmptyCategory()
+  }, [])
 
   return (
     <Link href={`/category/${cat.slug.current}`}>

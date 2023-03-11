@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import React from "react";
-import { useSelector } from "react-redux";
+
+import { useDispatch, useSelector } from "react-redux";
+import { removeCategory } from "../GlobalRedux/Features/categorySlice";
 import { RootState } from "../GlobalRedux/store";
 
 interface BasketItem {
@@ -17,6 +18,7 @@ interface BasketItem {
 
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   
   const items  = useSelector((state: RootState) => state.cart.items);
   //console.log(items)
