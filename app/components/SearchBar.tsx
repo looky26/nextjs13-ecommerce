@@ -8,24 +8,18 @@ import { setSearchItem } from "../GlobalRedux/Features/searchSlice";
 const SearchBar = () => {
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
-  
 
-  /* const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     dispatch(setSearchItem(search));
 
-    // console.log("submitted:" + search);
+    console.log("submitted:" + search);
   };
 
-  useEffect(() => {
-    
-  }, [search]) */
-  
-
   return (
-    <div
+    <form
       className="text-center space-y-2 lg:space-y-0 text-sm lg:text-lg md:text-base space-x-2 "
-    
+      onSubmit={handleSubmit}
     >
       <input
         type="text"
@@ -35,9 +29,11 @@ const SearchBar = () => {
         onChange={(e) => setSearch(e.target.value)}
       />
       <Link href={`/search-results/${search}`}>
-      <button className="bg-gray-500 p-1 md:p-2 rounded-md px-4">Search</button>
+        <button className="bg-gray-500 p-1 md:p-2 rounded-md px-4">
+          Search
+        </button>
       </Link>
-    </div>
+    </form>
   );
 };
 
