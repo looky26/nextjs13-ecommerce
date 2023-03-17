@@ -12,7 +12,6 @@ const SearchBar = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     dispatch(setSearchItem(search));
-
     console.log("submitted:" + search);
   };
 
@@ -23,13 +22,13 @@ const SearchBar = () => {
     >
       <input
         type="text"
-        placeholder="Enter your keyword"
+        placeholder="Enter your keyword to search"
         className="p-1 md:p-2 rounded-md w-64 md:w-96"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
-      <Link href={`/search-results/${search}`}>
-        <button className="bg-gray-500 p-1 md:p-2 rounded-md px-4">
+      <Link href={`/search-results/${search}`} >
+        <button disabled={search === '' ? true : false} className="bg-orange-500 p-1 md:p-2 rounded-md px-4">
           Search
         </button>
       </Link>

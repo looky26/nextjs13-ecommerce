@@ -29,12 +29,14 @@ const Home = async () => {
         {/* <img src='/Hero.avif' alt="" /> */}
         {/* Search Bar */}
         <div className="text-center lg:hidden">
-           <SearchBar/>
-          </div>
+          <SearchBar />
+        </div>
         <div className="text-center pt-48 lg:text-left lg:pt-80 lg:pl-40">
           <div className="">
             <h1 className="text-5xl lg:text-6xl">BEST GAMING RIGS</h1>
-            <h2 className="text-4xl lg:text-5xl ">OPTIMIZED FOR YOUR BUDGET.</h2>
+            <h2 className="text-4xl lg:text-5xl ">
+              OPTIMIZED FOR YOUR BUDGET.
+            </h2>
           </div>
 
           <button className=" mt-10 bg-blue-400 p-2 lg:p-3 px-5 text-base lg:text-lg rounded-lg">
@@ -48,18 +50,15 @@ const Home = async () => {
       </h1>
 
       <div className=" max-w-[1600px] mx-auto text-slate-100 pb-20 px-5">
-      <div className="flex flex-wrap gap-5 lg:gap-10 justify-center text-center mt-10 ">
-        {/* <div className="grid gap-10  grid-cols-fluid text-center mt-10 "> */}
+        <div className="flex flex-wrap gap-5 lg:gap-10 justify-center text-center mt-10 ">
+          {/* <div className="grid gap-10  grid-cols-fluid text-center mt-10 "> */}
           {categories.map((cat: any) => (
             <div key={cat._id} className="w-80 md:w-60 lg:w-60">
               <CategoryComponent cat={cat} />
             </div>
           ))}
-
         </div>
       </div>
-
-    
     </div>
   );
 };

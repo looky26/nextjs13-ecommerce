@@ -74,7 +74,7 @@ const CheckoutProduct = () => {
           </Link>
         </div>
       ) : (
-        <div className=" p-5 h-[100vh]">
+        <div className=" p-5 h-full">
           <h2 className="checkout__title">Your shopping Basket</h2>
           {items.map((item: BasketItem) => (
             <div
@@ -87,7 +87,7 @@ const CheckoutProduct = () => {
                 alt=""
               />
               <div className="ml-10">
-                <h1>{item.item}</h1>
+                <h1 className="max-w-md">{item.item}</h1>
                 <div className="flex">
                   {Array(item.ratings)
                     .fill(0)
