@@ -46,7 +46,7 @@ const SearchItems = async ({ params: { slug } }: PageProps) => {
       </div>
       <h1>Searched Items</h1>
       {results.length === 0 ? (
-        <p>Seached item not found</p>
+        <p>Seached item not found. Please do a much refined search</p>
       ) : (
         <div>
           {results.map((item: any) => (
