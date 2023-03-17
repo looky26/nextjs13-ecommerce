@@ -1,6 +1,7 @@
 import { sanityClient } from "@/utils/client";
 
 import CategoryComponent from "./components/CategoryComponent";
+import SearchBar from "./components/SearchBar";
 
 const fetchDataBasedOnCategory = async () => {
   const query = `*[_type == "category"] {
@@ -26,19 +27,23 @@ const Home = async () => {
     <div className="relative">
       <div className="bg-[url('/Hero.avif')] bg-no-repeat bg-cover h-[1000px] w-full">
         {/* <img src='/Hero.avif' alt="" /> */}
-        <div className="text-center pt-20 lg:text-left lg:pt-80 lg:pl-40">
+        {/* Search Bar */}
+        <div className="text-center lg:hidden">
+           <SearchBar/>
+          </div>
+        <div className="text-center pt-48 lg:text-left lg:pt-80 lg:pl-40">
           <div className="">
-            <h1 className="text-6xl">BEST GAMING RIGS</h1>
-            <h2 className="text-5xl ">OPTIMIZED FOR YOUR BUDGET.</h2>
+            <h1 className="text-5xl lg:text-6xl">BEST GAMING RIGS</h1>
+            <h2 className="text-4xl lg:text-5xl ">OPTIMIZED FOR YOUR BUDGET.</h2>
           </div>
 
-          <button className=" mt-10 bg-blue-400 p-3 px-5 text-lg rounded-lg">
+          <button className=" mt-10 bg-blue-400 p-2 lg:p-3 px-5 text-base lg:text-lg rounded-lg">
             Shop now
           </button>
         </div>
       </div>
       {/* Category */}
-      <h1 className="text-center text-white text-4xl -mt-32">
+      <h1 className="text-center text-white text-3xl lg:text-4xl -mt-32">
         Shop by Category
       </h1>
 
@@ -46,7 +51,7 @@ const Home = async () => {
       <div className="flex flex-wrap gap-5 lg:gap-10 justify-center text-center mt-10 ">
         {/* <div className="grid gap-10  grid-cols-fluid text-center mt-10 "> */}
           {categories.map((cat: any) => (
-            <div key={cat._id} className="w-52 md:w-60 lg:w-60">
+            <div key={cat._id} className="w-80 md:w-60 lg:w-60">
               <CategoryComponent cat={cat} />
             </div>
           ))}

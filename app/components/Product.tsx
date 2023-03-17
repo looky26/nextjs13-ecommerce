@@ -36,8 +36,8 @@ const Product: React.FC<ProductProps> = ({
   //console.log(items);
 
   return (
-    <div className="border border-gray-400 border-solid p-2 rounded-md">
-      <div className="flex items-center">
+    <div className=" border border-gray-400 border-solid p-2 rounded-md">
+      <div className="flex items-center ">
         <Link className="flex items-center " href={`/product/${slug.current}`}>
           <img
             className="w-60 h-60 object-contain"
